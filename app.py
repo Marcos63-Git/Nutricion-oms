@@ -236,6 +236,18 @@ else:
         doc.build(elementos)
         buffer.seek(0)
         return buffer
+    # --- Gráficos de Curvas de Crecimiento OMS ---
+    st.subheader("Curvas de Crecimiento OMS")
+    
+    fig, ax = plt.subplots(figsize=(8, 5))
+    # Aquí configuras el ploteo de las curvas y los puntos de tu paciente
+    ax.set_title("Seguimiento Antropométrico")
+    ax.set_xlabel("Edad (meses)")
+    ax.set_ylabel("Puntuación Z / Medida")
+    ax.grid(True)
+    
+    # Renderizamos la figura en la interfaz de Streamlit
+    st.pyplot(fig)
 
     pdf_file = generar_pdf()
     st.download_button(
