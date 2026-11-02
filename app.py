@@ -249,6 +249,12 @@ else:
     ax.set_xlabel("Edad (meses)")
     ax.set_ylabel("Puntuación Z / Medida")
     ax.grid(True)
+  # Inicializar historiales si no existen
+edades_historial = locals().get('edades_historial', [])
+tallas_historial = locals().get('tallas_historial', [])
+pesos_historial = locals().get('pesos_historial', [])
+imc_historial = locals().get('imc_historial', [])
+pc_historial = locals().get('pc_historial', [])
     # --- Cuadrícula de Gráficos de Crecimiento OMS ---
     st.subheader("Curvas de Crecimiento y Seguimiento Longitudinal")
 
