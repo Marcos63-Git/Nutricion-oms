@@ -235,10 +235,8 @@ else:
         elementos.append(t_diag)
         doc.build(elementos)
         buffer.seek(0)
-     
         return buffer
     color_paciente = 'red' if sexo == 'niña' else 'blue'
-
     # --- Gráficos de Curvas de Crecimiento OMS ---
     st.subheader("Curvas de Crecimiento OMS")
     
@@ -257,7 +255,6 @@ imc_historial = locals().get('imc_historial', [])
 pc_historial = locals().get('pc_historial', [])
     # --- Cuadrícula de Gráficos de Crecimiento OMS ---
     st.subheader("Curvas de Crecimiento y Seguimiento Longitudinal")
-
     # Fila 1: Talla/Edad y Peso/Edad
     col1, col2 = st.columns(2)
     with col1:
@@ -269,7 +266,6 @@ pc_historial = locals().get('pc_historial', [])
         ax_te.set_ylabel("Talla (cm)", fontsize=8)
         ax_te.grid(True, linestyle='--', alpha=0.6)
         st.pyplot(fig_te)
-
     with col2:
         fig_pe, ax_pe = plt.subplots(figsize=(5, 4))
         ax_pe.plot(edades_historial, pesos_historial, 'o-', color='tab:orange', label='Paciente')
@@ -278,7 +274,6 @@ pc_historial = locals().get('pc_historial', [])
         ax_pe.set_ylabel("Peso (kg)", fontsize=8)
         ax_pe.grid(True, linestyle='--', alpha=0.6)
         st.pyplot(fig_pe)
-
     # Fila 2: Peso/Talla e IMC/Edad
     col3, col4 = st.columns(2)
     with col3:
@@ -289,7 +284,6 @@ pc_historial = locals().get('pc_historial', [])
         ax_pt.set_ylabel("Peso (kg)", fontsize=8)
         ax_pt.grid(True, linestyle='--', alpha=0.6)
         st.pyplot(fig_pt)
-
     with col4:
         fig_imc, ax_imc = plt.subplots(figsize=(5, 4))
         ax_imc.plot(edades_historial, imc_historial, 'o-', color='tab:purple', label='Paciente')
@@ -298,7 +292,6 @@ pc_historial = locals().get('pc_historial', [])
         ax_imc.set_ylabel("IMC (kg/m²)", fontsize=8)
         ax_imc.grid(True, linestyle='--', alpha=0.6)
         st.pyplot(fig_imc)
-
     # Fila 3: Perímetro Cefálico (si corresponde por edad)
     if any(e <= 18 for e in edades_historial):
         st.markdown("---")
