@@ -254,7 +254,7 @@ pesos_historial = locals().get('pesos_historial', [])
 imc_historial = locals().get('imc_historial', [])
 pc_historial = locals().get('pc_historial', [])
     # --- Cuadrícula de Gráficos de Crecimiento OMS ---
-    st.subheader("Curvas de Crecimiento y Seguimiento Longitudinal")
+st.subheader("Curvas de Crecimiento y Seguimiento Longitudinal")
     # Fila 1: Talla/Edad y Peso/Edad
     col1, col2 = st.columns(2)
     with col1:
