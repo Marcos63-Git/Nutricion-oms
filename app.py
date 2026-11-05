@@ -266,7 +266,7 @@ with col1:
         ax_te.set_ylabel("Talla (cm)", fontsize=8)
         ax_te.grid(True, linestyle='--', alpha=0.6)
         st.pyplot(fig_te)
-    with col2:
+with col2:
         fig_pe, ax_pe = plt.subplots(figsize=(5, 4))
         ax_pe.plot(edades_historial, pesos_historial, 'o-', color='tab:orange', label='Paciente')
         ax_pe.set_title("Peso para la Edad (P/E)", fontsize=10)
@@ -276,7 +276,7 @@ with col1:
         st.pyplot(fig_pe)
     # Fila 2: Peso/Talla e IMC/Edad
     col3, col4 = st.columns(2)
-    with col3:
+with col3:
         fig_pt, ax_pt = plt.subplots(figsize=(5, 4))
         ax_pt.plot(tallas_historial, pesos_historial, 'o-', color='tab:green', label='Paciente')
         ax_pt.set_title("Peso para la Talla (P/T)", fontsize=10)
@@ -284,7 +284,7 @@ with col1:
         ax_pt.set_ylabel("Peso (kg)", fontsize=8)
         ax_pt.grid(True, linestyle='--', alpha=0.6)
         st.pyplot(fig_pt)
-    with col4:
+with col4:
         fig_imc, ax_imc = plt.subplots(figsize=(5, 4))
         ax_imc.plot(edades_historial, imc_historial, 'o-', color='tab:purple', label='Paciente')
         ax_imc.set_title("IMC para la Edad (IMC/E)", fontsize=10)
@@ -293,7 +293,7 @@ with col1:
         ax_imc.grid(True, linestyle='--', alpha=0.6)
         st.pyplot(fig_imc)
     # Fila 3: Perímetro Cefálico (si corresponde por edad)
-    if any(e <= 18 for e in edades_historial):
+if any(e <= 18 for e in edades_historial):
         st.markdown("---")
         fig_pc, ax_pc = plt.subplots(figsize=(5, 4))
         ax_pc.plot(edades_historial, pc_historial, 'o-', color='tab:red', label='Paciente')
