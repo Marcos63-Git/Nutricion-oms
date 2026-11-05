@@ -307,7 +307,7 @@ if any(e <= 18 for e in edades_historial):
     # Renderizamos la figura en la interfaz de Streamlit
 st.pyplot(fig)
 
-    pdf_file = generar_pdf()
+pdf_file = generar_pdf()
 st.download_button(
         label="📥 Descargar Informe Clínico en PDF",
         data=pdf_file,
