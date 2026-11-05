@@ -257,7 +257,7 @@ pc_historial = locals().get('pc_historial', [])
 st.subheader("Curvas de Crecimiento y Seguimiento Longitudinal")
     # Fila 1: Talla/Edad y Peso/Edad
 col1, col2 = st.columns(2)
-    with col1:
+with col1:
         fig_te, ax_te = plt.subplots(figsize=(5, 4))
         # Trazar curvas de referencia OMS y puntos históricos del paciente
         ax_te.plot(edades_historial, tallas_historial, 'o-', color='tab:blue', label='Paciente')
