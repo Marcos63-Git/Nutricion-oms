@@ -275,7 +275,7 @@ with col2:
         ax_pe.grid(True, linestyle='--', alpha=0.6)
         st.pyplot(fig_pe)
     # Fila 2: Peso/Talla e IMC/Edad
-    col3, col4 = st.columns(2)
+col3, col4 = st.columns(2)
 with col3:
         fig_pt, ax_pt = plt.subplots(figsize=(5, 4))
         ax_pt.plot(tallas_historial, pesos_historial, 'o-', color='tab:green', label='Paciente')
