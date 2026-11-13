@@ -245,10 +245,10 @@ color_paciente = 'red' if sexo == 'niña' else 'blue'
 fig, ax = plt.subplots(figsize=(8, 5))
     # Aquí configuras el ploteo de las curvas y los puntos de tu paciente
     
-    ax.set_title("Seguimiento Antropométrico")
-    ax.set_xlabel("Edad (meses)")
-    ax.set_ylabel("Puntuación Z / Medida")
-    ax.grid(True)
+ax.set_title("Seguimiento Antropométrico")
+ax.set_xlabel("Edad (meses)")
+ax.set_ylabel("Puntuación Z / Medida")
+ax.grid(True)
   # Inicializar historiales si no existen
 edades_historial = locals().get('edades_historial', [])
 tallas_historial = locals().get('tallas_historial', [])
