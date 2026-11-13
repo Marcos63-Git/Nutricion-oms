@@ -238,81 +238,38 @@ else:
         return buffer
     color_paciente = 'red' if sexo == 'niña' else 'blue'
     # --- Gráficos de Curvas de Crecimiento OMS ---
-    st.subheader("Curvas de Crecimiento OMS")
-    # Definición de color clínico estricto por sexo
+st.subheader("Curvas de Crecimiento OMS")
+# --- Cuadrícula de Gráficos de Crecimiento OMS con Percentiles ---
+st.subheader("Curvas de Crecimiento y Seguimiento Longitudinal (OMS)")
+
+# Definición de color clínico estricto por sexo
 color_paciente = 'red' if sexo == 'niña' else 'blue'
 
-fig, ax = plt.subplots(figsize=(8, 5))
-    # Aquí configuras el ploteo de las curvas y los puntos de tu paciente
-    
-ax.set_title("Seguimiento Antropométrico")
-ax.set_xlabel("Edad (meses)")
-ax.set_ylabel("Puntuación Z / Medida")
-ax.grid(True)
-  # Inicializar historiales si no existen
-edades_historial = locals().get('edades_historial', [])
-tallas_historial = locals().get('tallas_historial', [])
-pesos_historial = locals().get('pesos_historial', [])
-imc_historial = locals().get('imc_historial', [])
-pc_historial = locals().get('pc_historial', [])
-    # --- Cuadrícula de Gráficos de Crecimiento OMS ---
-st.subheader("Curvas de Crecimiento y Seguimiento Longitudinal")
-    # Fila 1: Talla/Edad y Peso/Edad
 col1, col2 = st.columns(2)
+
 with col1:
-        fig_te, ax_te = plt.subplots(figsize=(5, 4))
-        # Trazar curvas de referencia OMS y puntos históricos del paciente
-        ax_te.plot(edades_historial, tallas_historial, 'o-', color='tab:blue', label='Paciente')
-        ax_te.set_title("Talla para la Edad (T/E)", fontsize=10)
-        ax_te.set_xlabel("Edad (meses)", fontsize=8)
-        ax_te.set_ylabel("Talla (cm)", fontsize=8)
-        ax_te.grid(True, linestyle='--', alpha=0.6)
-        st.pyplot(fig_te)
-with col2:
-        fig_pe, ax_pe = plt.subplots(figsize=(5, 4))
-        ax_pe.plot(edades_historial, pesos_historial, 'o-', color='tab:orange', label='Paciente')
-        ax_pe.set_title("Peso para la Edad (P/E)", fontsize=10)
-        ax_pe.set_xlabel("Edad (meses)", fontsize=8)
-        ax_pe.set_ylabel("Peso (kg)", fontsize=8)
-        ax_pe.grid(True, linestyle='--', alpha=0.6)
-        st.pyplot(fig_pe)
-    # Fila 2: Peso/Talla e IMC/Edad
-col3, col4 = st.columns(2)
-with col3:
-        fig_pt, ax_pt = plt.subplots(figsize=(5, 4))
-        ax_pt.plot(tallas_historial, pesos_historial, 'o-', color='tab:green', label='Paciente')
-        ax_pt.set_title("Peso para la Talla (P/T)", fontsize=10)
-        ax_pt.set_xlabel("Talla (cm)", fontsize=8)
-        ax_pt.set_ylabel("Peso (kg)", fontsize=8)
-        ax_pt.grid(True, linestyle='--', alpha=0.6)
-        st.pyplot(fig_pt)
-with col4:
-        fig_imc, ax_imc = plt.subplots(figsize=(5, 4))
-        ax_imc.plot(edades_historial, imc_historial, 'o-', color='tab:purple', label='Paciente')
-        ax_imc.set_title("IMC para la Edad (IMC/E)", fontsize=10)
-        ax_imc.set_xlabel("Edad (meses)", fontsize=8)
-        ax_imc.set_ylabel("IMC (kg/m²)", fontsize=8)
-        ax_imc.grid(True, linestyle='--', alpha=0.6)
-        st.pyplot(fig_imc)
-    # Fila 3: Perímetro Cefálico (si corresponde por edad)
-if any(e <= 18 for e in edades_historial):
-        st.markdown("---")
-        fig_pc, ax_pc = plt.subplots(figsize=(5, 4))
-        ax_pc.plot(edades_historial, pc_historial, 'o-', color='tab:red', label='Paciente')
-        ax_pc.set_title("Perímetro Cefálico para la Edad (< 18 meses)", fontsize=10)
-        ax_pc.set_xlabel("Edad (meses)", fontsize=8)
-        ax_pc.set_ylabel("Perímetro (cm)", fontsize=8)
-        ax_pc.grid(True, linestyle='--', alpha=0.6)
-        st.pyplot(fig_pc)
-
+    fig_te, ax_te = plt.subplots(figsize=(5, 4))
+    ax_te.axhline(y=50, color='gray', linestyle=':', alpha=0.5, label='P50 (Mediana)')
     
-    # Renderizamos la figura en la interfaz de Streamlit
-st.pyplot(fig)
+    if edades_historial and tallas_historial:
+        ax_te.plot(edades_historial, tallas_historial, 'o-', color=color_paciente, linewidth=2, label='Paciente')
+        
+    ax_te.set_title("Talla para la Edad (T/E)", fontsize=10)
+    ax_te.set_xlabel("Edad (meses)", fontsize=8)
+    ax_te.set_ylabel("Talla (cm)", fontsize=8)
+    ax_te.grid(True, linestyle='--', alpha=0.6)
+    st.pyplot(fig_te)
 
-pdf_file = generar_pdf()
-st.download_button(
-        label="📥 Descargar Informe Clínico en PDF",
-        data=pdf_file,
-        file_name=f"Evaluacion_Nutricional_{nombre.replace(' ', '_')}.pdf",
-        mime="application/pdf"
-    )
+with col2:
+    fig_pe, ax_pe = plt.subplots(figsize=(5, 4))
+    ax_pe.axhline(y=10, color='gray', linestyle=':', alpha=0.5, label='P50')
+    
+    if edades_historial and pesos_historial:
+        ax_pe.plot(edades_historial, pesos_historial, 'o-', color=color_paciente, linewidth=2, label='Paciente')
+        
+    ax_pe.set_title("Peso para la Edad (P/E)", fontsize=10)
+    ax_pe.set_xlabel("Edad (meses)", fontsize=8)
+    ax_pe.set_ylabel("Peso (kg)", fontsize=8)
+    ax_pe.grid(True, linestyle='--', alpha=0.6)
+    st.pyplot(fig_pe)
+
