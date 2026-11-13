@@ -239,7 +239,9 @@ else:
     color_paciente = 'red' if sexo == 'niña' else 'blue'
     # --- Gráficos de Curvas de Crecimiento OMS ---
     st.subheader("Curvas de Crecimiento OMS")
-    
+    # Definición de color clínico estricto por sexo
+color_paciente = 'red' if sexo == 'niña' else 'blue'
+
     fig, ax = plt.subplots(figsize=(8, 5))
     # Aquí configuras el ploteo de las curvas y los puntos de tu paciente
     
