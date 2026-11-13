@@ -242,7 +242,7 @@ else:
     # Definición de color clínico estricto por sexo
 color_paciente = 'red' if sexo == 'niña' else 'blue'
 
-    fig, ax = plt.subplots(figsize=(8, 5))
+fig, ax = plt.subplots(figsize=(8, 5))
     # Aquí configuras el ploteo de las curvas y los puntos de tu paciente
     
     ax.set_title("Seguimiento Antropométrico")
